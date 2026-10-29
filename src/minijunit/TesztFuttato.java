@@ -8,6 +8,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 /**
  *
@@ -103,17 +104,44 @@ public class TesztFuttato {
             if(expected.value().isInstance(thrown))
             {
                 passed++;
+                System.out.println("✔ " + test.getName());
             }
             else
             {
                 failed++;
+                System.out.println("✘ " + test.getName() + " - " + (thrown == null ? "expected exception not thrown" : thrown.getMessage()));
             }
         }
-        if(expected == null)
+        else
         {
-            if(thrown == null) { passed++; }
-            else if(thrown instanceof AssertHiba) { failed++; }
-            else { errors++; }
+            if(thrown == null) 
+            { 
+                passed++;
+                System.out.println("✔ " + test.getName());
+            }
+            else if(thrown instanceof AssertHiba) 
+            { 
+                failed++;
+                System.out.println("✘ " + test.getName() + " - " + thrown.getMessage());
+            }
+            else 
+            { 
+                errors++;
+                System.out.println("✘ " + test.getName() + " - ERROR: " + thrown);
+            }
         }
+    }
+    
+    public void futtat()
+    {
+        long start = System.nanoTime();
+        List<Method> tests = findMethods(Teszt.class);
+        tests.sort(Comparator.comparing(Method::getName));
+        for(Method t : tests)
+        {
+            runTest(t);
+        }
+        long ms = (System.nanoTime() - start) / 1_000_000;
+        System.out.println("Passed: " + passed + ", Failed: " + failed + ", Errors: " + errors + ", Time: " + ms + " ms");
     }
 }
