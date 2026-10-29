@@ -18,6 +18,10 @@ java -cp out peldateszt.Main
 
 The runner is the TesztFuttato class. It gets a Class<?> object and uses reflection to find all the methods marked with @Teszt. The tests are sorted by name, so the report order is always the same. For every single test a new instance of the test class is created, so the tests cannot affect each other. First the @Elotte methods run on this instance, then the test method itself, and at the end the @Utana methods run, even if the test failed. The methods are called with Method.invoke, which wraps every exception in an InvocationTargetException, so the real exception is taken out with getCause(). If the real exception is an AssertHiba, the test FAILED. If it is any other exception, it is an ERROR, because something unexpected happened. If the test has @VartKivetel, it passes only when the thrown exception is an instance of the expected type, otherwise it fails. At the end the summary shows the number of passed, failed and error tests and the elapsed time in milliseconds.
 
+## Design
+
+See the class diagram in [docs/uml.md](docs/uml.md).
+
 ## Example output
 
 ```
