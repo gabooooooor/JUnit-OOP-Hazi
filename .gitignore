@@ -1,1 +1,4 @@
 out/
+/nbproject/private/
+build/
+dist/
