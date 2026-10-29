@@ -6,8 +6,14 @@ package minijunit;
 
 /**
  *
- * @author ministar
+ * Thrown when an assertion fails (a test FAILS, as opposed to an ERROR).
  */
-public class AssertHiba {
+
+
+public class AssertHiba extends RuntimeException{
     
+    public AssertHiba(String message)
+    {
+        super(message);
+    }
 }

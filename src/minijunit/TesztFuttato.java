@@ -104,12 +104,12 @@ public class TesztFuttato {
             if(expected.value().isInstance(thrown))
             {
                 passed++;
-                System.out.println("✔ " + test.getName());
+                System.out.println("PASS " + test.getName());
             }
             else
             {
                 failed++;
-                System.out.println("✘ " + test.getName() + " - " + (thrown == null ? "expected exception not thrown" : thrown.getMessage()));
+                System.out.println("FAIL " + test.getName() + " - " + (thrown == null ? "expected exception not thrown" : thrown.getMessage()));
             }
         }
         else
@@ -117,17 +117,17 @@ public class TesztFuttato {
             if(thrown == null) 
             { 
                 passed++;
-                System.out.println("✔ " + test.getName());
+                System.out.println("PASS " + test.getName());
             }
             else if(thrown instanceof AssertHiba) 
             { 
                 failed++;
-                System.out.println("✘ " + test.getName() + " - " + thrown.getMessage());
+                System.out.println("FAIL " + test.getName() + " - " + thrown.getMessage());
             }
             else 
             { 
                 errors++;
-                System.out.println("✘ " + test.getName() + " - ERROR: " + thrown);
+                System.out.println("ERROR " + test.getName() + " - ERROR: " + thrown);
             }
         }
     }

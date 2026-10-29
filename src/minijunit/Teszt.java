@@ -4,10 +4,15 @@
  */
 package minijunit;
 
+import java.lang.annotation.*;
 /**
  *
  * @author ministar
  */
-public interface Teszt {
+
+// Marks a method as a test; the runner finds it with reflection
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Teszt {
     
 }

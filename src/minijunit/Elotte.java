@@ -4,10 +4,14 @@
  */
 package minijunit;
 
+import java.lang.annotation.*;
 /**
  *
  * @author ministar
  */
-public interface Elotte {
+//Runs before every test
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Elotte {
     
 }

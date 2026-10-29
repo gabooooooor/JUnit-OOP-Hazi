@@ -4,10 +4,16 @@
  */
 package minijunit;
 
+import java.lang.annotation.*;
 /**
  *
  * @author ministar
  */
-public interface VartKivetel {
+
+// The test passes only if it throws the given exception type
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface VartKivetel {
     
+    Class<? extends Throwable> value();
 }

@@ -4,10 +4,14 @@
  */
 package minijunit;
 
+import java.lang.annotation.*;
 /**
  *
  * @author ministar
  */
-public interface Utana {
+//Runs after every test
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Utana {
     
 }
